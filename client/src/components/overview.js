@@ -30,49 +30,49 @@ class StatusDashboard extends Component {
     if (stationTwo) {
       if (station.LineCode4) {
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode1}.png`} />,
+          <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
         );
 
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode2}.png`} />,
+          <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
         );
 
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode3}.png`} />,
+          <img key={`${stationCode}-${station.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode3}.png`} />,
         );
 
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode4}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode4}.png`} />,
+          <img key={`${stationCode}-${station.LineCode4}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode4}.png`} />,
         )
       }
 
       if (!station.LineCode4 && station.LineCode3) {
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode1}.png`} />,
+          <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
         );
 
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode2}.png`} />,
+          <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
         );
 
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode3}.png`} />,
+          <img key={`${stationCode}-${station.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode3}.png`} />,
         );
       }
 
       if (!station.LineCode4 && !station.LineCode3 && station.LineCode2) {
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode1}.png`} />,
+          <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
         );
 
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode2}.png`} />,
+          <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
         );
       }
 
       if (!station.LineCode4 && !station.LineCode3 && !station.LineCode2 && station.LineCode1) {
         iconArray.push(
-          <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode1}.png`} />,
+          <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
         );
       }
 
@@ -81,49 +81,49 @@ class StatusDashboard extends Component {
 
       if (stationTwo.LineCode4) {
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode1}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode1}.png`} />,
         );
 
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode2}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode2}.png`} />,
         );
 
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode3}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode3}.png`} />,
         );
 
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode4}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode4}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode4}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode4}.png`} />,
         )
       }
 
       if (!stationTwo.LineCode4 && stationTwo.LineCode3) {
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode1}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode1}.png`} />,
         );
 
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode2}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode2}.png`} />,
         );
 
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode3}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode3}.png`} />,
         );
       }
 
       if (!stationTwo.LineCode4 && !stationTwo.LineCode3 && stationTwo.LineCode2) {
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode1}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode1}.png`} />,
         );
 
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode2}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode2}.png`} />,
         );
       }
 
       if (!stationTwo.LineCode4 && !stationTwo.LineCode3 && !stationTwo.LineCode2 && stationTwo.LineCode1) {
         iconArrayTwo.push(
-          <img key={`${stationTwoCode}-${stationTwo.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${stationTwo.LineCode1}.png`} />,
+          <img key={`${stationTwoCode}-${stationTwo.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${stationTwo.LineCode1}.png`} />,
         );
       }
 
@@ -134,52 +134,52 @@ class StatusDashboard extends Component {
 
     if (station.LineCode4) {
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode1}.png`} />,
+        <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
       );
 
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode2}.png`} />,
+        <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
       );
 
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode3}.png`} />,
+        <img key={`${stationCode}-${station.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode3}.png`} />,
       );
 
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode4}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode4}.png`} />,
+        <img key={`${stationCode}-${station.LineCode4}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode4}.png`} />,
       )
       return iconArray;
     }
 
     if (!station.LineCode4 && station.LineCode3) {
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode1}.png`} />,
+        <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
       );
 
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode2}.png`} />,
+        <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
       );
 
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode3}.png`} />,
+        <img key={`${stationCode}-${station.LineCode3}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode3}.png`} />,
       );
       return iconArray;
     }
 
     if (!station.LineCode4 && !station.LineCode3 && station.LineCode2) {
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode1}.png`} />,
+        <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
       );
 
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode2}.png`} />,
+        <img key={`${stationCode}-${station.LineCode2}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
       );
       return iconArray;
     }
 
     if (!station.LineCode4 && !station.LineCode3 && !station.LineCode2 && station.LineCode1) {
       iconArray.push(
-        <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/include/metro-pics/${station.LineCode1}.png`} />,
+        <img key={`${stationCode}-${station.LineCode1}`} style={{marginLeft: 4}} width="18" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
       );
       return iconArray;
     }
@@ -189,32 +189,32 @@ class StatusDashboard extends Component {
   renderLineIcon(train) {
     if (train.Line == 'OR') {
       return (
-        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`}  style={{marginRight: 8}} width="18" src='https://ignytegroup.com/include/metro-pics/orange-line.png' />
+        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`}  style={{marginRight: 8}} width="18" src='https://ignytegroup.com/wp-content/uploads/2018/04/orange-line.png' />
       )
     }
     if (train.Line == 'RD') {
       return (
-        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/include/metro-pics/red-line.png' />
+        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/wp-content/uploads/2018/04/red-line.png' />
       )
     }
     if (train.Line == 'BL') {
       return (
-        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/include/metro-pics/blue-line.png' />
+        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/wp-content/uploads/2018/04/blue-line.png' />
       )
     }
     if (train.Line == 'SV') {
       return (
-        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/include/metro-pics/silver-line.png' />
+        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/wp-content/uploads/2018/04/silver-line.png' />
       )
     }
     if (train.Line == 'GR') {
       return (
-        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/include/metro-pics/green-line.png' />
+        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/wp-content/uploads/2018/04/green-line.png' />
       )
     }
     if (train.Line == 'YL') {
       return (
-        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/include/metro-pics/yellow-line.png' />
+        <img key={`${train.LocationCode}-${train.Detination}-${train.Min}-${train.Line}`} style={{marginRight: 8}} width="18" src='https://ignytegroup.com/wp-content/uploads/2018/04/yellow-line.png' />
       )
     }
 
@@ -477,8 +477,8 @@ class StatusDashboard extends Component {
               <th style={{ width: '25%' }} data-field="station" data-sortable="true">Station</th>
               {/* <th>Line</th> */}
               {/* <th>Current Wait</th> */}
-              <th>Crowd</th>
-              <th>Operational Health</th>
+              <th>Current Crowding</th>
+              <th>Elevator & Escalator Health</th>
             </tr>
           </thead>
           <tbody>

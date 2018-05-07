@@ -25,9 +25,9 @@ class StationDetail extends Component {
 
   componentWillMount() {
     this.props.fetchStationDetailPredictions(this.props.params.stationName.split('_').join(' '));
-    this.props.fetchStationDetailAllDayPredictions(this.props.params.stationName.split('_').join(' '));
+    // this.props.fetchStationDetailAllDayPredictions(this.props.params.stationName.split('_').join(' '));
     this.props.fetchStationDetailHealth(this.props.params.stationName.split('_').join(' '));
-    this.props.fetchStationDetailLongTermData(this.props.params.stationName.split('_').join(' '));
+    // this.props.fetchStationDetailLongTermData(this.props.params.stationName.split('_').join(' '));
     this.props.fetchStationDetailAverages(this.props.params.stationName.split('_').join(' '));
     this.props.fetchStationDetailCrowdData(this.props.params.stationName.split('_').join(' '));
 
@@ -392,6 +392,11 @@ class StationDetail extends Component {
 
       return ([
         <div className="row">
+          <div className="col-md-12">
+            <h4>Next Train</h4>
+          </div>
+        </div>,
+        <div className="row">
           <div className="col-md-6"><h5>{generalTrainDirection == 'East-West' ? 'Eastbound' : 'Northbound'}</h5></div>
           <div className="col-md-6"><h5>{eastOrNorthWait}</h5></div>
         </div>,
@@ -406,48 +411,48 @@ class StationDetail extends Component {
     }
   }
 
-  renderCurrentWaitGraph() {
-    const westOrSouth = [];
-    const eastOrNorth = [];
-    const data = this.props.stationDetailPredictionsAllDay;
-    const numOfLines = _.size(data);
-    let generalTrainDirection = '';
-
-    if (numOfLines == 1) {
-      _.forEach(data, (stationCodeSet, stationCodeID) => {
-        _.forEach(stationCodeSet, (stationData, destination) => {
-          // console.log('stationData: ', stationData);
-          // console.log('destination: ', destination);
-          // const trainDirection = config.stationDirections[destination].Direction;
-
-          let trainDirection = '';
-
-          if (config.stationDirections[destination]) {
-            trainDirection = config.stationDirections[destination].Direction;
-          }
-
-          // console.log('trainDirection: ', trainDirection);
-          generalTrainDirection = trainDirection;
-
-          if (trainDirection == 'North' || trainDirection == 'East') {
-            _.forEach(stationData, indData => {
-              eastOrNorth.push(indData)
-            })
-          }
-
-          if (trainDirection == 'West' || trainDirection == 'South') {
-            _.forEach(stationData, indData => {
-              westOrSouth.push(indData)
-            })
-          }
-        });
-      });
-
-      return (
-        <TodaysWaitLineChartEastWest dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/>
-      )
-    }
-  }
+  // renderCurrentWaitGraph() {
+  //   const westOrSouth = [];
+  //   const eastOrNorth = [];
+  //   const data = this.props.stationDetailPredictionsAllDay;
+  //   const numOfLines = _.size(data);
+  //   let generalTrainDirection = '';
+  //
+  //   if (numOfLines == 1) {
+  //     _.forEach(data, (stationCodeSet, stationCodeID) => {
+  //       _.forEach(stationCodeSet, (stationData, destination) => {
+  //         // console.log('stationData: ', stationData);
+  //         // console.log('destination: ', destination);
+  //         // const trainDirection = config.stationDirections[destination].Direction;
+  //
+  //         let trainDirection = '';
+  //
+  //         if (config.stationDirections[destination]) {
+  //           trainDirection = config.stationDirections[destination].Direction;
+  //         }
+  //
+  //         // console.log('trainDirection: ', trainDirection);
+  //         generalTrainDirection = trainDirection;
+  //
+  //         if (trainDirection == 'North' || trainDirection == 'East') {
+  //           _.forEach(stationData, indData => {
+  //             eastOrNorth.push(indData)
+  //           })
+  //         }
+  //
+  //         if (trainDirection == 'West' || trainDirection == 'South') {
+  //           _.forEach(stationData, indData => {
+  //             westOrSouth.push(indData)
+  //           })
+  //         }
+  //       });
+  //     });
+  //
+  //     return (
+  //       <TodaysWaitLineChartEastWest dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/>
+  //     )
+  //   }
+  // }
 
   renderCrowdGraph() {
     const data = this.props.stationDetailCrowdData;
@@ -500,10 +505,10 @@ function mapStateToProps(state) {
   console.log('state: ', state);
   return {
     stationDetailPredictions: state.fetch.stationDetailPredictions,
-    stationDetailPredictionsLongTerm: state.fetch.stationDetailPredictionsLongTerm,
+    // stationDetailPredictionsLongTerm: state.fetch.stationDetailPredictionsLongTerm,
     stationDetailHealth: state.fetch.stationDetailHealth,
     stationDetailAverages: state.fetch.stationDetailAverages,
-    stationDetailPredictionsAllDay: state.fetch.stationDetailPredictionsAllDay,
+    // stationDetailPredictionsAllDay: state.fetch.stationDetailPredictionsAllDay,
     stationDetailCrowdData: state.fetch.stationDetailCrowdData
   }
 }

@@ -122,6 +122,14 @@ class AverageWaitLineChartEastWest extends Component {
     const config = {
       "type": "serial",
       "theme": "light",
+      "legend": {
+        "horizontalGap": 10,
+        "maxColumns": 1,
+        "position": "top",
+        "useGraphSettings": true,
+        "markerSize": 10,
+        "marginTop": 20
+      },
       "marginRight": 40,
       "marginLeft": 40,
       "autoMarginOffset": 20,
@@ -150,7 +158,7 @@ class AverageWaitLineChartEastWest extends Component {
           "bulletSize": 5,
           "hideBulletsCount": 50,
           "lineThickness": 2,
-          "title": "red line",
+          "title": "Eastbound",
           "useLineColorForBulletBorder": true,
           "valueField": "east",
           "balloonText": "<span style='font-size:18px;'>[[value]]</span>"
@@ -168,7 +176,7 @@ class AverageWaitLineChartEastWest extends Component {
           "bulletSize": 5,
           "hideBulletsCount": 50,
           "lineThickness": 2,
-          "title": "red line",
+          "title": "Westbound",
           "useLineColorForBulletBorder": true,
           "valueField": "west",
           "balloonText": "<span style='font-size:18px;'>[[value]]</span>"

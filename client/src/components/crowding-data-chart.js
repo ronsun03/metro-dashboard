@@ -230,7 +230,7 @@ class CrowdingDataChart extends Component {
       <div style={{height: '100%', width: '100%'}}>
         <AmCharts.React
           style={{
-            width: "100%",
+            width: "99%",
             height: "500px"
           }}
           options={config}

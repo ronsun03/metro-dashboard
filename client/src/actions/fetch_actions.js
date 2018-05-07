@@ -34,6 +34,7 @@ export const fetchStationDetailAverages = stationName => {
 
     axios.post(`${ROOT_URL}/fetch-station-detail-averages`, {stationCodeObject}).then(response => {
       const data = response.data;
+      console.log('data: ', data);
 
       const newStationCodeObject = {};
       _.forEach(stationInformation, station => {
