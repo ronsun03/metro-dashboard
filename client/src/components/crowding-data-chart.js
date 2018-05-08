@@ -160,7 +160,7 @@ class CrowdingDataChart extends Component {
         "id": "v1",
         "axisAlpha": 0,
         "position": "left",
-        "ignoreAxisWidth": true,
+        "ignoreAxisWidth": false,
         "unit": "%"
       }],
       "balloon": {
@@ -185,21 +185,21 @@ class CrowdingDataChart extends Component {
           "type": "column"
         }
       ],
-      "chartScrollbar": {
-        "graph": "g1",
-        "oppositeAxis": false,
-        "offset":30,
-        "scrollbarHeight": 80,
-        "backgroundAlpha": 0,
-        "selectedBackgroundAlpha": 0.1,
-        "selectedBackgroundColor": "#888888",
-        "graphFillAlpha": 0,
-        "graphLineAlpha": 0.5,
-        "selectedGraphFillAlpha": 0,
-        "selectedGraphLineAlpha": 1,
-        "autoGridCount": true,
-        "color":"#AAAAAA"
-      },
+      // "chartScrollbar": {
+      //   "graph": "g1",
+      //   "oppositeAxis": false,
+      //   "offset":30,
+      //   "scrollbarHeight": 80,
+      //   "backgroundAlpha": 0,
+      //   "selectedBackgroundAlpha": 0.1,
+      //   "selectedBackgroundColor": "#888888",
+      //   "graphFillAlpha": 0,
+      //   "graphLineAlpha": 0.5,
+      //   "selectedGraphFillAlpha": 0,
+      //   "selectedGraphLineAlpha": 1,
+      //   "autoGridCount": true,
+      //   "color":"#AAAAAA"
+      // },
       "chartCursor": {
         "pan": true,
         "valueLineEnabled": true,

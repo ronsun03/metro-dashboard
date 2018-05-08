@@ -1,10 +1,11 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import * as d3 from 'd3';
 
 import AverageWaitLineChartEastWest from './average-wait-line-chart-east-west';
+import AverageWaitLineChartNorthSouth from './average-wait-line-chart-north-south';
 import TodaysWaitLineChartEastWest from './todays-wait-line-chart-east-west';
 import CrowdingDataChart from './crowding-data-chart';
 import TestChart from './test-chart';
@@ -51,6 +52,45 @@ class StationDetail extends Component {
       escalatorHealth = data[0].escator_health;
     });
 
+    // Set color of elevator health bar
+    let elevatorHealthColor = '';
+
+    if (elevatorHealth >= 90) {
+      elevatorHealthColor = '#73D15C';
+    }
+
+    if (elevatorHealth >= 80 && elevatorHealth < 90) {
+      elevatorHealthColor = '#E3D430';
+    }
+
+    if (elevatorHealth >= 70 && elevatorHealth < 80) {
+      elevatorHealthColor = '#FF6333';
+    }
+
+    if (elevatorHealth < 70) {
+      elevatorHealthColor = '#D44E4E';
+    }
+
+    // Set color of escalator health bar
+    let escalatorHealthColor = '';
+
+    if (escalatorHealth >= 90) {
+      escalatorHealthColor = '#73D15C';
+    }
+
+    if (escalatorHealth >= 80 && escalatorHealth < 90) {
+      escalatorHealthColor = '#E3D430';
+    }
+
+    if (escalatorHealth >= 70 && escalatorHealth < 80) {
+      escalatorHealthColor = '#FF6333';
+    }
+
+    if (escalatorHealth < 70) {
+      escalatorHealthColor = '#D44E4E';
+    }
+
+
     if (numOfLines == 1) {
       return ([
         <div className="col-md-4">
@@ -66,7 +106,7 @@ class StationDetail extends Component {
             <div
               className="progress-bar"
               role="progressbar"
-              style={{ width: `${escalatorHealth}%` }}
+              style={{ width: `${escalatorHealth}%`, backgroundColor: `${escalatorHealthColor}`, fontWeight: '700', color: 'black'  }}
               // style="width: ${percentageWidth}%; background-color: ${color}"
             >
               <h5 style={{ marginBottom: 0 }}>{`${escalatorHealth}%`}</h5>
@@ -86,7 +126,7 @@ class StationDetail extends Component {
             <div
               className="progress-bar"
               role="progressbar"
-              style={{ width: `${elevatorHealth}%` }}
+              style={{ width: `${elevatorHealth}%`, backgroundColor: `${elevatorHealthColor}`, fontWeight: '700', color: 'black'  }}
               // style="width: ${percentageWidth}%; background-color: ${color}"
             >
               <h5 style={{ marginBottom: 0 }}>{`${elevatorHealth}%`}</h5>
@@ -171,7 +211,9 @@ class StationDetail extends Component {
           <div className="col-md-6"><h6>{westOrSouthAverage.toFixed(1)}</h6></div>
         </div>,
         <div className="row">
-          <AverageWaitLineChartEastWest dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/>
+          {
+            generalTrainDirection == 'East-West' ? <AverageWaitLineChartEastWest dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/> : <AverageWaitLineChartNorthSouth dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/>
+          }
         </div>
       ])
     }
@@ -213,6 +255,8 @@ class StationDetail extends Component {
         })
       })
 
+      console.log('generalTrainDirection: ', generalTrainDirection);
+
       // console.log('westOrSouth: ', westOrSouth);
       // console.log('eastOrNorth: ', eastOrNorth);
 
@@ -248,7 +292,9 @@ class StationDetail extends Component {
           <div className="col-md-6"><h6>{westOrSouthAverage.toFixed(1)}</h6></div>
         </div>,
         <div className="row">
-          <AverageWaitLineChartEastWest dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/>
+          {
+            generalTrainDirection == 'East-West' ? <AverageWaitLineChartEastWest dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/> : <AverageWaitLineChartNorthSouth dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/>
+          }
         </div>
       ])
     }
@@ -350,6 +396,7 @@ class StationDetail extends Component {
 
       // Loop through to get the shortest wait time
       _.forEach(eastOrNorth, data => {
+        console.log('data: ', data);
         const arrivalTime = data.Min;
         const arrivalTimeInt = parseInt(data.Min);
         // console.log('arrivalTime: ', arrivalTime);
@@ -466,6 +513,12 @@ class StationDetail extends Component {
     console.log('this.state: ', this.state);
     return (
       <div>
+        <div className="row" style={{ marginBottom: 25 }}>
+          <div className="col-md-12">
+            <button onClick={()=>{ browserHistory.push('/'); window.location.reload() }} type="button" className="btn btn-secondary">&larr; Back to Station Overview</button>
+            {/* <button onClick={()=>{ console.log(push); push('/') }} type="button" className="btn btn-secondary">&larr; Back to Station Overview</button> */}
+          </div>
+        </div>
         <div className="row">
           <div className="col-md-12">
             <h1>{this.props.params.stationName.split('_').join(' ')}</h1>

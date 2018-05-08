@@ -265,7 +265,7 @@ class StatusDashboard extends Component {
     }
 
     if (percentage >= 25 && percentage < 50) {
-      color = '#E8DF7B';
+      color = '#E3D430';
     }
 
     if (percentage < 25) {
@@ -284,7 +284,7 @@ class StatusDashboard extends Component {
         <div
           className="progress-bar"
           role="progressbar"
-          style={{ width: `${percentage}%`, backgroundColor: `${color}` }}
+          style={{ width: `${percentage}%`, backgroundColor: `${color}`, fontWeight: '700', color: 'black' }}
         >
           {`${percentage}%`}
         </div>
@@ -319,14 +319,10 @@ class StatusDashboard extends Component {
       //
       // deleteArray.forEach(e => { delete trainPredictions[e] })
 
-      console.log('trainPredictions 1: ', trainPredictions);
-
       _.forEach(multipleStations, (remove, stay) => {
         trainPredictions[stay] = trainPredictions[stay].concat(trainPredictions[remove])
         delete trainPredictions[remove]
       })
-
-      console.log('trainPredictions 2: ', trainPredictions);
 
       _.forEach(trainPredictions, (station, id) => {
         const operationHealthPercentage = (operationalHealth[id][0].elevator_health + operationalHealth[id][0].escator_health) / 2
@@ -337,7 +333,7 @@ class StatusDashboard extends Component {
         }
 
         if (operationHealthPercentage >= 80 && operationHealthPercentage < 90) {
-          operationHealthColor = '#E8DF7B';
+          operationHealthColor = '#E3D430';
         }
 
         if (operationHealthPercentage >= 70 && operationHealthPercentage < 80) {
@@ -394,7 +390,7 @@ class StatusDashboard extends Component {
                 <div
                   className="progress-bar"
                   role="progressbar"
-                  style={{ width: `${operationHealthPercentage}%`, backgroundColor: operationHealthColor }}
+                  style={{ width: `${operationHealthPercentage}%`, backgroundColor: operationHealthColor, fontWeight: '700', color: 'black'  }}
                 >
                   {`${operationHealthPercentage}%`}
                 </div>
@@ -427,7 +423,7 @@ class StatusDashboard extends Component {
           }
 
           if (waitTime > 5 && waitTime <= 10) {
-            waitStatusColor = '#E8DF7B';
+            waitStatusColor = '#E3D430';
             waitTimeString = waitTime + ' mins';
           }
 
@@ -483,8 +479,6 @@ class StatusDashboard extends Component {
 
       });
 
-      console.log('arrayOfAllStationRows: ', arrayOfAllStationRows);
-
       return arrayOfAllStationRows;
     }
   }
@@ -512,7 +506,6 @@ class StatusDashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     trainPredictions: state.fetch.trainPredictions,
     operationalHealth: state.fetch.operationalHealth,
