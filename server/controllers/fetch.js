@@ -56,10 +56,7 @@ exports.fetchTrainPredictionsAllDay = function(req, res, next) {
 }
 
 exports.fetchStationDetailAverages = function(req, res, next) {
-  console.log('req.body', req.body);
   const { stationCodeObject } = req.body
-
-  console.log('stationCodeObject', stationCodeObject);
 
   var connection = mysql.createConnection({
     host     : 'metrod3.cfbbqu7kclkl.us-east-2.rds.amazonaws.com',
@@ -72,7 +69,6 @@ exports.fetchStationDetailAverages = function(req, res, next) {
 
   connection.query('SELECT * from DailyAverage', function(err, rows, fields) {
     if (!err) {
-      console.log(rows);
       _.forEach(stationCodeObject, (station, stationCode) => {
         _.forEach(rows, row => {
           if (stationCode === row.LocationCode) {
@@ -81,8 +77,6 @@ exports.fetchStationDetailAverages = function(req, res, next) {
         })
       })
 
-      console.log('stationCodeObject', stationCodeObject);
-      // console.log('TrainPredictionsWMATA: ', rows);
       res.json(stationCodeObject);
     } else {
       console.log('Error while performing Query.');
