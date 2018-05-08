@@ -3,10 +3,10 @@ const config = {};
 config.serverURL = 'http://localhost:3090';
 
 // micro server
-// config.serverURL = 'http://ec2-18-188-16-40.us-east-2.compute.amazonaws.com:3090';
+config.serverURL = 'http://ec2-18-188-16-40.us-east-2.compute.amazonaws.com:3090';
 
 // medium server
-config.serverURL = 'http://ec2-18-218-230-239.us-east-2.compute.amazonaws.com:3090';
+// config.serverURL = 'http://ec2-18-218-230-239.us-east-2.compute.amazonaws.com:3090';
 
 config.multipleStations = {
   A01: 'C01',
