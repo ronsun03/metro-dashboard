@@ -302,10 +302,31 @@ class StatusDashboard extends Component {
     const arrayOfAllStationRows = [];
     if (trainPredictions && operationalHealth) {
 
+      // FOR TESTING, ONLY USE FIRST 15 STATIONS
+      // const deleteArray = [
+      //   'B01',
+      //   'B02',
+      //   'B03',
+      //   'B04',
+      //   'B05',
+      //   'B06',
+      //   'B07',
+      //   'B08',
+      //   'B09',
+      //   'B010',
+      //   'B11',
+      // ];
+      //
+      // deleteArray.forEach(e => { delete trainPredictions[e] })
+
+      console.log('trainPredictions 1: ', trainPredictions);
+
       _.forEach(multipleStations, (remove, stay) => {
         trainPredictions[stay] = trainPredictions[stay].concat(trainPredictions[remove])
         delete trainPredictions[remove]
       })
+
+      console.log('trainPredictions 2: ', trainPredictions);
 
       _.forEach(trainPredictions, (station, id) => {
         const operationHealthPercentage = (operationalHealth[id][0].elevator_health + operationalHealth[id][0].escator_health) / 2
@@ -358,7 +379,7 @@ class StatusDashboard extends Component {
         stationRowArrayTwo.push(
           <tr key={`${id}`} className="accordion-toggle" style={{cursor: 'pointer'}} data-toggle="collapse" data-target={`#rowid-${id}`}>
             <td width="50%">
-              <Link style={{marginRight: 8}} to={`/${stationNameLink}`}>{stationName}</Link>
+              <Link className="station-name" style={{marginRight: 8}} to={`/${stationNameLink}`}>{stationName}</Link>
               {this.renderStationLineColor(id)}
             </td>
             <td width="25%">{this.renderCrowdData(id)}</td>

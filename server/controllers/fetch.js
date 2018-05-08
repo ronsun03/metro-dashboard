@@ -11,8 +11,18 @@ exports.fetchTrainPredictions = function(req, res, next) {
 
   connection.connect();
 
-  connection.query('SELECT * from TrainPredictionsWMATA WHERE (LocationCode,UploadTime) IN ( SELECT LocationCode, MAX(UploadTime) FROM TrainPredictionsWMATA GROUP BY LocationCode);', function(err, rows, fields) {
+  // connection.query('SELECT * from TrainPredictionsWMATA WHERE (LocationCode,UploadTime) IN ( SELECT LocationCode, MAX(UploadTime) FROM TrainPredictionsWMATA GROUP BY LocationCode);', function(err, rows, fields) {
+  //   if (!err) {
+  //     console.log('fetchTrainPredictions rows.length: ', rows.length);
+  //     res.json(rows);
+  //   } else {
+  //     console.log('Error while performing Query.');
+  //   }
+  // });
+
+  connection.query('SELECT * from TrainPredictionsWMATA2;', function(err, rows, fields) {
     if (!err) {
+      console.log('fetchTrainPredictions rows.length: ', rows.length);
       res.json(rows);
     } else {
       console.log('Error while performing Query.');
@@ -120,9 +130,18 @@ exports.fetchOperationalHealth = function(req, res, next) {
 
   connection.connect();
 
-  connection.query('SELECT * FROM StationHealth WHERE (Station_Code,UploadTime) IN ( SELECT Station_Code, MAX(UploadTime) FROM StationHealth GROUP BY Station_Code)', function(err, rows, fields) {
+  // connection.query('SELECT * FROM StationHealth WHERE (Station_Code,UploadTime) IN ( SELECT Station_Code, MAX(UploadTime) FROM StationHealth GROUP BY Station_Code)', function(err, rows, fields) {
+  //   if (!err) {
+  //     console.log('fetchOperationalHealth rows.length: ', rows.length);
+  //     res.json(rows);
+  //   } else {
+  //     console.log('Error while performing Query.');
+  //   }
+  // });
+
+  connection.query('SELECT * FROM StationHealth2', function(err, rows, fields) {
     if (!err) {
-      // console.log('StationHealth: ', rows);
+      console.log('fetchOperationalHealth rows.length: ', rows.length);
       res.json(rows);
     } else {
       console.log('Error while performing Query.');

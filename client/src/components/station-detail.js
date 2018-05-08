@@ -54,7 +54,7 @@ class StationDetail extends Component {
     if (numOfLines == 1) {
       return ([
         <div className="col-md-4">
-          <h5>Escalator Uptime</h5>
+          <h4 className="stat-header">Escalator Uptime</h4>
           <div className="progress"
             style={{
               backgroundColor: '#E6E6E6 !important',
@@ -74,7 +74,7 @@ class StationDetail extends Component {
           </div>
         </div>,
         <div className="col-md-4">
-          <h5>Elevator Uptime</h5>
+          <h4 className="stat-header">Elevator Uptime</h4>
           <div className="progress"
             style={{
               backgroundColor: '#E6E6E6 !important',
@@ -163,12 +163,12 @@ class StationDetail extends Component {
 
       return ([
         <div className="row">
-          <div className="col-md-6"><h5>{generalTrainDirection == 'East-West' ? 'Eastbound' : 'Northbound'}</h5></div>
-          <div className="col-md-6"><h5>{eastOrNorthAverage.toFixed(1)}</h5></div>
+          <div className="col-md-6"><h6>{generalTrainDirection == 'East-West' ? 'Eastbound' : 'Northbound'}</h6></div>
+          <div className="col-md-6"><h6>{eastOrNorthAverage.toFixed(1)}</h6></div>
         </div>,
         <div className="row">
-          <div className="col-md-6"><h5>{generalTrainDirection == 'East-West' ? 'Westbound' : 'Southbound'}</h5></div>
-          <div className="col-md-6"><h5>{westOrSouthAverage.toFixed(1)}</h5></div>
+          <div className="col-md-6"><h6>{generalTrainDirection == 'East-West' ? 'Westbound' : 'Southbound'}</h6></div>
+          <div className="col-md-6"><h6>{westOrSouthAverage.toFixed(1)}</h6></div>
         </div>,
         <div className="row">
           <AverageWaitLineChartEastWest dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/>
@@ -240,12 +240,12 @@ class StationDetail extends Component {
 
       return ([
         <div className="row">
-          <div className="col-md-6"><h5>{generalTrainDirection == 'East-West' ? 'Eastbound' : 'Northbound'}</h5></div>
-          <div className="col-md-6"><h5>{eastOrNorthAverage.toFixed(1)}</h5></div>
+          <div className="col-md-6"><h6>{generalTrainDirection == 'East-West' ? 'Eastbound' : 'Northbound'}</h6></div>
+          <div className="col-md-6"><h6>{eastOrNorthAverage.toFixed(1)}</h6></div>
         </div>,
         <div className="row">
-          <div className="col-md-6"><h5>{generalTrainDirection == 'East-West' ? 'Westbound' : 'Southbound'}</h5></div>
-          <div className="col-md-6"><h5>{westOrSouthAverage.toFixed(1)}</h5></div>
+          <div className="col-md-6"><h6>{generalTrainDirection == 'East-West' ? 'Westbound' : 'Southbound'}</h6></div>
+          <div className="col-md-6"><h6>{westOrSouthAverage.toFixed(1)}</h6></div>
         </div>,
         <div className="row">
           <AverageWaitLineChartEastWest dataWestOrSouth={westOrSouth} dataEastOrNorth={eastOrNorth}/>
@@ -393,16 +393,16 @@ class StationDetail extends Component {
       return ([
         <div className="row">
           <div className="col-md-12">
-            <h4>Next Train</h4>
+            <h4 className="stat-header">Next Train</h4>
           </div>
         </div>,
         <div className="row">
-          <div className="col-md-6"><h5>{generalTrainDirection == 'East-West' ? 'Eastbound' : 'Northbound'}</h5></div>
-          <div className="col-md-6"><h5>{eastOrNorthWait}</h5></div>
+          <div className="col-md-6"><h6>{generalTrainDirection == 'East-West' ? 'Eastbound' : 'Northbound'}</h6></div>
+          <div className="col-md-6"><h6>{eastOrNorthWait}</h6></div>
         </div>,
         <div className="row">
-          <div className="col-md-6"><h5>{generalTrainDirection == 'East-West' ? 'Westbound' : 'Southbound'}</h5></div>
-          <div className="col-md-6"><h5>{westOrSouthWait}</h5></div>
+          <div className="col-md-6"><h6>{generalTrainDirection == 'East-West' ? 'Westbound' : 'Southbound'}</h6></div>
+          <div className="col-md-6"><h6>{westOrSouthWait}</h6></div>
         </div>,
         // <div className="row">
         //   {this.renderHealthRow()}
@@ -466,7 +466,11 @@ class StationDetail extends Component {
     console.log('this.state: ', this.state);
     return (
       <div>
-        <div className="row"><h1>{this.props.params.stationName.split('_').join(' ')}</h1></div>
+        <div className="row">
+          <div className="col-md-12">
+            <h1>{this.props.params.stationName.split('_').join(' ')}</h1>
+          </div>
+        </div>
         <hr />
         <div className="row">
           <div className="col-md-4">
@@ -481,20 +485,24 @@ class StationDetail extends Component {
             {this.renderCurrentWaitTimeColumn()}
           </div> */}
           <div className="col-md-6">
-            <h4>Peak Average Wait Time</h4>
+            <h4 className="stat-header">Peak Average Wait Time</h4>
             {this.renderPeakAverageWaitTimeColumn()}
           </div>
           <div className="col-md-6">
-            <h4>Off-Peak Average Wait Time</h4>
+            <h4 className="stat-header">Off-Peak Average Wait Time</h4>
             {this.renderOffPeakAverageWaitTimeColumn()}
           </div>
         </div>
         <hr />
         <div className="row">
-          <h3>Crowding Data</h3>
+          <div className="col-md-12">
+            <h3>Crowding Data</h3>
+          </div>
         </div>
         <div className="row">
-          {this.renderCrowdGraph()}
+          <div className="col-md-12">
+            {this.renderCrowdGraph()}
+          </div>
         </div>
       </div>
     )

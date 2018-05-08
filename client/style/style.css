@@ -1,3 +1,33 @@
+h1, h2, h3, h4, h5, h6, p, a, span, th, td {
+  font-family: 'Quicksand', sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4
+ {
+  color: #4679b0 !important;
+}
+
+a {
+  color: #4679b0 !important;
+  font-weight: 500;
+
+}
+
+th {
+  font-size: 18px;
+}
+
+.stat-header {
+  margin-bottom: 15px;
+}
+
+.station-name {
+  font-size: 16px;
+}
+
 .error {
   color: red;
 }
