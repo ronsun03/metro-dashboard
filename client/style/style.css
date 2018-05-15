@@ -57,3 +57,15 @@ th {
   margin: 0 5px !important;
   padding: 6px 0;
 }
+
+.accordion-toggle a::before {
+  content: '+  '
+}
+
+.accordion-toggle .collapsed a::before {
+  content: '-  '
+}
+
+.station-detail-title-icons {
+  margin-bottom: 15px;
+}

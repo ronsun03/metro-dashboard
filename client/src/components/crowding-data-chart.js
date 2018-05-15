@@ -10,15 +10,16 @@ import config from '../actions/config'
 import commonFunctions from '../actions/common_functions'
 import * as actions from '../actions'
 import common from '../actions/common_functions';
+import historicalData from '../internal-data/populartimes'
 
 class CrowdingDataChart extends Component {
   generateData() {
-    const data = this.props.data;
+    const { predictedData, stationKeyArray } = this.props;
     const newObject = {};
     let stationKey = '';
     const dataProvider = [];
 
-    _.forEach(data, station => {
+    _.forEach(predictedData, station => {
       const crowdData = station[0];
       stationKey = station[0].stationkey;
       delete station[0].stationkey;
@@ -43,7 +44,7 @@ class CrowdingDataChart extends Component {
         const hour = new Date(yyyy, mm, dd, key);
         dataProvider.push({
           time: hour,
-          percent: percent,
+          predictedPercent: percent,
           color: currentHour == key ? '#639BAD' : '#A5C8D4'
         })
       })
@@ -59,7 +60,7 @@ class CrowdingDataChart extends Component {
         const hour = new Date(yyyy, mm, dd, key);
         dataProvider.push({
           time: hour,
-          percent: percent,
+          predictedPercent: percent,
           color: currentHour == key ? '#639BAD' : '#A5C8D4'
         })
       })
@@ -75,7 +76,7 @@ class CrowdingDataChart extends Component {
         const hour = new Date(yyyy, mm, dd, key);
         dataProvider.push({
           time: hour,
-          percent: percent,
+          predictedPercent: percent,
           color: currentHour == key ? '#639BAD' : '#A5C8D4'
         })
       })
@@ -91,7 +92,7 @@ class CrowdingDataChart extends Component {
         const hour = new Date(yyyy, mm, dd, key);
         dataProvider.push({
           time: hour,
-          percent: percent,
+          predictedPercent: percent,
           color: currentHour == key ? '#639BAD' : '#A5C8D4'
         })
       })
@@ -107,7 +108,7 @@ class CrowdingDataChart extends Component {
         const hour = new Date(yyyy, mm, dd, key);
         dataProvider.push({
           time: hour,
-          percent: percent,
+          predictedPercent: percent,
           color: currentHour == key ? '#639BAD' : '#A5C8D4'
         })
       })
@@ -123,7 +124,7 @@ class CrowdingDataChart extends Component {
         const hour = new Date(yyyy, mm, dd, key);
         dataProvider.push({
           time: hour,
-          percent: percent,
+          predictedPercent: percent,
           color: currentHour == key ? '#639BAD' : '#A5C8D4'
         })
       })
@@ -139,11 +140,27 @@ class CrowdingDataChart extends Component {
         const hour = new Date(yyyy, mm, dd, key);
         dataProvider.push({
           time: hour,
-          percent: percent,
+          predictedPercent: percent,
           color: currentHour == key ? '#639BAD' : '#A5C8D4'
         })
       })
     }
+
+    let stationHistoricalData = {};
+
+    _.forEach(stationKeyArray, (stationKey) => {
+      _.forEach(historicalData, object => {
+        if (object.stationkey == stationKey) {
+          stationHistoricalData = object;
+        }
+      })
+    });
+
+    const todayStationHistoricalData = stationHistoricalData[today]
+
+    _.forEach(dataProvider, (data, i) => {
+      dataProvider[i].historicalPercent = todayStationHistoricalData[i]
+    })
 
     return dataProvider;
   }
@@ -152,6 +169,14 @@ class CrowdingDataChart extends Component {
     const config = {
       "type": "serial",
       "theme": "light",
+      "legend": {
+        "horizontalGap": 10,
+        "maxColumns": 1,
+        "position": "top",
+        "useGraphSettings": true,
+        "markerSize": 10,
+        "marginTop": 20
+      },
       "marginRight": 40,
       "marginLeft": 40,
       "autoMarginOffset": 20,
@@ -171,18 +196,37 @@ class CrowdingDataChart extends Component {
         {
           "id": "g1",
           "balloon":{
-            "drop": true,
+            "drop": false,
             "adjustBorderColor": false,
             "color":"#ffffff"
           },
           "fillAlphas": 1,
           "lineAlpha": 0,
           "lineThickness": 2,
-          "title": "crowd graph",
-          "valueField": "percent",
+          "title": "Historical Crowding",
+          "valueField": "historicalPercent",
           "colorField": "color",
           "balloonText": "<span style='font-size:18px;'>[[value]]%</span>",
           "type": "column"
+        },
+        {
+          "id": "g2",
+          "balloon":{
+            "drop": true,
+            "adjustBorderColor": false,
+            "color":"#ffffff"
+          },
+          "bullet": "round",
+          "bulletBorderAlpha": 1,
+          "bulletColor": "#FFFFFF",
+          "bulletSize": 5,
+          "lineColor": "#FF5229",
+          "hideBulletsCount": 50,
+          "lineThickness": 2,
+          "title": "Predicted Crowding",
+          "useLineColorForBulletBorder": true,
+          "valueField": "predictedPercent",
+          "balloonText": "<span style='font-size:18px;'>[[value]]%</span>"
         }
       ],
       // "chartScrollbar": {

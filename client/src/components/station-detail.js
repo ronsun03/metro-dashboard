@@ -94,7 +94,7 @@ class StationDetail extends Component {
     if (numOfLines == 1) {
       return ([
         <div className="col-md-4">
-          <h4 className="stat-header">Escalator Uptime</h4>
+          <h4 className="stat-header">Operational Escalators</h4>
           <div className="progress"
             style={{
               backgroundColor: '#E6E6E6 !important',
@@ -114,7 +114,7 @@ class StationDetail extends Component {
           </div>
         </div>,
         <div className="col-md-4">
-          <h4 className="stat-header">Elevator Uptime</h4>
+          <h4 className="stat-header">Operational Elevators</h4>
           <div className="progress"
             style={{
               backgroundColor: '#E6E6E6 !important',
@@ -174,11 +174,6 @@ class StationDetail extends Component {
         })
       })
 
-      console.log('generalTrainDirection', generalTrainDirection);
-
-      // console.log('westOrSouth: ', westOrSouth);
-      // console.log('eastOrNorth: ', eastOrNorth);
-
       let westOrSouthTotal = 0;
       let westOrSouthAverage = 0;
       let eastOrNorthTotal = 0;
@@ -192,14 +187,8 @@ class StationDetail extends Component {
         eastOrNorthTotal = eastOrNorthTotal + data.boardingtimes;
       })
 
-      // console.log('westOrSouthTotal: ', westOrSouthTotal);
-      // console.log('eastOrNorthTotal: ', eastOrNorthTotal);
-
       westOrSouthAverage = westOrSouthTotal / _.size(westOrSouth);
       eastOrNorthAverage = eastOrNorthTotal / _.size(eastOrNorth);
-
-      // console.log('westOrSouthAverage: ', westOrSouthAverage);
-      // console.log('eastOrNorthAverage: ', eastOrNorthAverage);
 
       return ([
         <div className="row">
@@ -255,11 +244,6 @@ class StationDetail extends Component {
         })
       })
 
-      console.log('generalTrainDirection: ', generalTrainDirection);
-
-      // console.log('westOrSouth: ', westOrSouth);
-      // console.log('eastOrNorth: ', eastOrNorth);
-
       let westOrSouthTotal = 0;
       let westOrSouthAverage = 0;
       let eastOrNorthTotal = 0;
@@ -273,14 +257,8 @@ class StationDetail extends Component {
         eastOrNorthTotal = eastOrNorthTotal + data.boardingtimes;
       })
 
-      // console.log('westOrSouthTotal: ', westOrSouthTotal);
-      // console.log('eastOrNorthTotal: ', eastOrNorthTotal);
-
       westOrSouthAverage = westOrSouthTotal / _.size(westOrSouth);
       eastOrNorthAverage = eastOrNorthTotal / _.size(eastOrNorth);
-
-      // console.log('westOrSouthAverage: ', westOrSouthAverage);
-      // console.log('eastOrNorthAverage: ', eastOrNorthAverage);
 
       return ([
         <div className="row">
@@ -301,160 +279,254 @@ class StationDetail extends Component {
   }
 
   renderCurrentWaitTimeColumn() {
-    const westOrSouth = [];
-    const eastOrNorth = [];
     const data = this.props.stationDetailPredictions;
-    const numOfLines = _.size(data);
-    let generalTrainDirection = '';
 
-    // For stations with only one line
-    if (numOfLines === 1) {
-      _.forEach(data, (stationCodeSet, stationCodeID) => {
-        _.forEach(stationCodeSet, (stationData, destination) => {
-          // const trainDirection = config.stationDirections[destination].Direction;
+    if (data) {
+      const westOrSouth = [];
+      const eastOrNorth = [];
+      const numOfLines = _.size(data);
+      let generalTrainDirection = '';
 
-          let trainDirection = '';
+      // For stations with only one line
+      if (numOfLines === 1) {
+        _.forEach(data, (stationCodeSet, stationCodeID) => {
+          _.forEach(stationCodeSet, (stationData, destination) => {
+            // const trainDirection = config.stationDirections[destination].Direction;
 
-          if(config.stationDirections[destination]) {
-            trainDirection = config.stationDirections[destination].Direction;
-          }
+            let trainDirection = '';
 
-          // generalTrainDirection = trainDirection;
+            if(config.stationDirections[destination]) {
+              trainDirection = config.stationDirections[destination].Direction;
+            }
 
-          if (trainDirection == 'North') {
-            _.forEach(stationData, indData => {
-              eastOrNorth.push(indData)
-            })
-            generalTrainDirection = 'North-South'
-          }
+            // generalTrainDirection = trainDirection;
 
-          if (trainDirection == 'East') {
-            _.forEach(stationData, indData => {
-              eastOrNorth.push(indData)
-            })
-            generalTrainDirection = 'East-West'
-          }
+            if (trainDirection == 'North') {
+              _.forEach(stationData, indData => {
+                eastOrNorth.push(indData)
+              })
+              generalTrainDirection = 'North-South'
+            }
 
-          if (trainDirection == 'West') {
-            _.forEach(stationData, indData => {
-              westOrSouth.push(indData)
-            })
-            generalTrainDirection = 'East-West'
-          }
+            if (trainDirection == 'East') {
+              _.forEach(stationData, indData => {
+                eastOrNorth.push(indData)
+              })
+              generalTrainDirection = 'East-West'
+            }
 
-          if (trainDirection == 'South') {
-            _.forEach(stationData, indData => {
-              westOrSouth.push(indData)
-            })
-            generalTrainDirection = 'North-South'
-          }
+            if (trainDirection == 'West') {
+              _.forEach(stationData, indData => {
+                westOrSouth.push(indData)
+              })
+              generalTrainDirection = 'East-West'
+            }
+
+            if (trainDirection == 'South') {
+              _.forEach(stationData, indData => {
+                westOrSouth.push(indData)
+              })
+              generalTrainDirection = 'North-South'
+            }
+          });
         });
-      });
 
-      let westOrSouthWait = '';
-      let eastOrNorthWait = '';
+        // let westOrSouthWait = '';
+        // let eastOrNorthWait = '';
 
-      // Loop through to get the shortest wait time
-      _.forEach(westOrSouth, data => {
-        const arrivalTime = data.Min;
-        const arrivalTimeInt = parseInt(data.Min);
+        const westOrSouthIncomingTrain = westOrSouth[0];
+        let westOrSouthWait = 'No Train';
+        let westOrSouthStation = '';
+        let westOrSouthColor = '-';
 
-        // If nothing exists, push arrivalTime
-        if (!westOrSouthWait) {
-          westOrSouthWait = arrivalTime;
-          return;
+        if (westOrSouthIncomingTrain) {
+          westOrSouthWait = westOrSouthIncomingTrain.Min;
+          westOrSouthStation = westOrSouthIncomingTrain.Destination;
+          westOrSouthColor = westOrSouthIncomingTrain.Line;
         }
 
-        // If wait time is already BRD, break for loop because BRD is the shortest possible board time.
-        if (westOrSouthWait == 'BRD') {
-          return;
+        const eastOrNorthIncomingTrain = eastOrNorth[0];
+        let eastOrNorthWait = 'No Train';
+        let eastOrNorthStation = '';
+        let eastOrNorthColor = '-';
+
+        if (eastOrNorthIncomingTrain) {
+          eastOrNorthWait = eastOrNorthIncomingTrain.Min;
+          eastOrNorthStation = eastOrNorthIncomingTrain.Destination;
+          eastOrNorthColor = eastOrNorthIncomingTrain.Line;
         }
 
-        if (arrivalTime == 'BRD') {
-          westOrSouthWait = arrivalTime;
-          return;
+        // Loop through to get the shortest wait time
+        // _.forEach(westOrSouth, data => {
+        //   const arrivalTime = data.Min;
+        //   const arrivalTimeInt = parseInt(data.Min);
+        //
+        //   // If nothing exists, push arrivalTime
+        //   if (!westOrSouthWait) {
+        //     westOrSouthWait = arrivalTime;
+        //     return;
+        //   }
+        //
+        //   // If wait time is already BRD, break for loop because BRD is the shortest possible board time.
+        //   if (westOrSouthWait == 'BRD') {
+        //     return;
+        //   }
+        //
+        //   if (arrivalTime == 'BRD') {
+        //     westOrSouthWait = arrivalTime;
+        //     return;
+        //   }
+        //
+        //   if (westOrSouthWait == 'ARR') {
+        //     return;
+        //   }
+        //
+        //   if (arrivalTime == 'ARR') {
+        //     westOrSouthWait = arrivalTime;
+        //     return;
+        //   }
+        //
+        //   if (!westOrSouthWait) {
+        //     westOrSouthWait = arrivalTime;
+        //     return;
+        //   }
+        //
+        //   if (parseInt(westOrSouthWait) > arrivalTimeInt) {
+        //     westOrSouthWait = arrivalTime;
+        //   }
+        // })
+
+        // Loop through to get the shortest wait time
+        // _.forEach(eastOrNorth, data => {
+        //   const arrivalTime = data.Min;
+        //   const arrivalTimeInt = parseInt(data.Min);
+        //   // console.log('arrivalTime: ', arrivalTime);
+        //
+        //   // If nothing exists, push arrivalTime
+        //   if (!eastOrNorthWait) {
+        //     eastOrNorthWait = arrivalTime;
+        //     return;
+        //   }
+        //
+        //   // If wait time is already BRD, break for loop because BRD is the shortest possible board time.
+        //   if (eastOrNorthWait == 'BRD') {
+        //     return;
+        //   }
+        //
+        //   if (arrivalTime == 'BRD') {
+        //     eastOrNorthWait = arrivalTime;
+        //     return;
+        //   }
+        //
+        //   if (eastOrNorthWait == 'ARR') {
+        //     return;
+        //   }
+        //
+        //   if (arrivalTime == 'ARR') {
+        //     eastOrNorthWait = arrivalTime;
+        //     return;
+        //   }
+        //
+        //   if (!eastOrNorthWait) {
+        //     eastOrNorthWait = arrivalTime;
+        //     return;
+        //   }
+        //
+        //   if (parseInt(eastOrNorthWait) > arrivalTimeInt) {
+        //     eastOrNorthWait = arrivalTime;
+        //   }
+        //
+        // });
+
+        return ([
+          <div className="row">
+            <div className="col-md-12">
+              <h4 className="stat-header">Next Train</h4>
+            </div>
+          </div>,
+          <div className="row">
+            <div className="col-md-8">
+              <h6 style={{ display: 'inline '}}>{generalTrainDirection == 'East-West' ? 'Eastbound - ' : 'Northbound - '}{eastOrNorthStation}</h6>
+              <img key={`${eastOrNorthStation}-${eastOrNorthColor}`} style={{marginLeft: 6, marginBottom: 2}} width="16" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${eastOrNorthColor}.png`} />
+            </div>
+            <div className="col-md-4"><h6>{eastOrNorthWait}</h6></div>
+          </div>,
+          <div className="row">
+            <div className="col-md-8">
+              <h6 style={{ display: 'inline '}}>{generalTrainDirection == 'East-West' ? 'Westbound - ' : 'Southbound - '}{westOrSouthStation}</h6>
+              <img key={`${westOrSouthStation}-${westOrSouthColor}`} style={{marginLeft: 6, marginBottom: 2}} width="16" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${westOrSouthColor}.png`} />
+            </div>
+            <div className="col-md-4"><h6>{westOrSouthWait}</h6></div>
+          </div>,
+          // <div className="row">
+          //   {this.renderHealthRow()}
+          // </div>
+        ])
+      }
+    } else {
+      return (<div />)
+    }
+  }
+
+  renderLineIcons() {
+    const { stationDetailHealth } = this.props
+    if (stationDetailHealth) {
+      const numOfLines = _.size(stationDetailHealth);
+      const iconArray = [];
+
+      _.forEach(stationDetailHealth, (data, stationCode) => {
+        const station = common.stationInformationByCode(stationCode);
+        if (station.LineCode4) {
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode1}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
+          );
+
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode2}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
+          );
+
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode3}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode3}.png`} />,
+          );
+
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode4}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode4}.png`} />,
+          )
         }
 
-        if (westOrSouthWait == 'ARR') {
-          return;
+        if (!station.LineCode4 && station.LineCode3) {
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode1}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
+          );
+
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode2}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
+          );
+
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode3}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode3}.png`} />,
+          );
         }
 
-        if (arrivalTime == 'ARR') {
-          westOrSouthWait = arrivalTime;
-          return;
+        if (!station.LineCode4 && !station.LineCode3 && station.LineCode2) {
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode1}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
+          );
+
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode2}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode2}.png`} />,
+          );
         }
 
-        if (!westOrSouthWait) {
-          westOrSouthWait = arrivalTime;
-          return;
-        }
-
-        if (parseInt(westOrSouthWait) > arrivalTimeInt) {
-          westOrSouthWait = arrivalTime;
+        if (!station.LineCode4 && !station.LineCode3 && !station.LineCode2 && station.LineCode1) {
+          iconArray.push(
+            <img key={`${stationCode}-${station.LineCode1}`} className="station-detail-title-icons" style={{marginLeft: 4}} width="26" src={`https://ignytegroup.com/wp-content/uploads/2018/04/${station.LineCode1}.png`} />,
+          );
         }
       })
-
-      // Loop through to get the shortest wait time
-      _.forEach(eastOrNorth, data => {
-        console.log('data: ', data);
-        const arrivalTime = data.Min;
-        const arrivalTimeInt = parseInt(data.Min);
-        // console.log('arrivalTime: ', arrivalTime);
-
-        // If nothing exists, push arrivalTime
-        if (!eastOrNorthWait) {
-          eastOrNorthWait = arrivalTime;
-          return;
-        }
-
-        // If wait time is already BRD, break for loop because BRD is the shortest possible board time.
-        if (eastOrNorthWait == 'BRD') {
-          return;
-        }
-
-        if (arrivalTime == 'BRD') {
-          eastOrNorthWait = arrivalTime;
-          return;
-        }
-
-        if (eastOrNorthWait == 'ARR') {
-          return;
-        }
-
-        if (arrivalTime == 'ARR') {
-          eastOrNorthWait = arrivalTime;
-          return;
-        }
-
-        if (!eastOrNorthWait) {
-          eastOrNorthWait = arrivalTime;
-          return;
-        }
-
-        if (parseInt(eastOrNorthWait) > arrivalTimeInt) {
-          eastOrNorthWait = arrivalTime;
-        }
-
-      });
-
-      return ([
-        <div className="row">
-          <div className="col-md-12">
-            <h4 className="stat-header">Next Train</h4>
-          </div>
-        </div>,
-        <div className="row">
-          <div className="col-md-6"><h6>{generalTrainDirection == 'East-West' ? 'Eastbound' : 'Northbound'}</h6></div>
-          <div className="col-md-6"><h6>{eastOrNorthWait}</h6></div>
-        </div>,
-        <div className="row">
-          <div className="col-md-6"><h6>{generalTrainDirection == 'East-West' ? 'Westbound' : 'Southbound'}</h6></div>
-          <div className="col-md-6"><h6>{westOrSouthWait}</h6></div>
-        </div>,
-        // <div className="row">
-        //   {this.renderHealthRow()}
-        // </div>
-      ])
+      return iconArray;
+    } else {
+      return (<div />)
     }
   }
 
@@ -503,14 +575,21 @@ class StationDetail extends Component {
 
   renderCrowdGraph() {
     const data = this.props.stationDetailCrowdData;
+    const numOfLines = _.size(data);
+    const stationKeyArray = [];
+    _.forEach(data, (point, key) => {
+      stationKeyArray.push(key)
+    })
 
-    return (
-      <CrowdingDataChart data={data}/>
-    )
+    if (numOfLines == 1) {
+      return (
+        <CrowdingDataChart predictedData={data} stationKeyArray={stationKeyArray}/>
+      )
+    }
+
   }
 
   render() {
-    console.log('this.state: ', this.state);
     return (
       <div>
         <div className="row" style={{ marginBottom: 25 }}>
@@ -521,7 +600,8 @@ class StationDetail extends Component {
         </div>
         <div className="row">
           <div className="col-md-12">
-            <h1>{this.props.params.stationName.split('_').join(' ')}</h1>
+            <h1 style={{ display: 'inline', marginRight: 10 }}>{this.props.params.stationName.split('_').join(' ')}</h1>
+            {this.renderLineIcons()}
           </div>
         </div>
         <hr />

@@ -408,27 +408,27 @@ class StatusDashboard extends Component {
 
           if (waitTime == 'BRD' || waitTime == 'ARR') {
             percentageWaitTime = 0.2 / 10 * 100;
-            waitStatusColor = '#D44E4E'
+            waitStatusColor = '#4679b0'
             waitTimeString = waitTime;
           }
 
           if (waitTime <= 2) {
-            waitStatusColor = '#D44E4E';
+            waitStatusColor = '#4679b0';
             waitTimeString = waitTime + ' mins';
           }
 
           if (waitTime > 2 && waitTime <= 5) {
-            waitStatusColor = '#FF6333';
+            waitStatusColor = '#4679b0';
             waitTimeString = waitTime + ' mins';
           }
 
           if (waitTime > 5 && waitTime <= 10) {
-            waitStatusColor = '#E3D430';
+            waitStatusColor = '#4679b0';
             waitTimeString = waitTime + ' mins';
           }
 
           if (waitTime > 10) {
-            waitStatusColor = '#73D15C';
+            waitStatusColor = '#4679b0';
             waitTimeString = waitTime + ' mins';
           }
 
@@ -468,7 +468,17 @@ class StatusDashboard extends Component {
 
           stationRowArrayTwo.push(
             <tr key={`${id}--${incomingTrains[i].Destination}`} colSpan={3} className="accordion-body collapse" id={`rowid-${id}`}>
-              <td colSpan={3}>{middleArray} </td>
+              <td colSpan={3}>
+                <div className="row train-detail-row">
+                  <div className="col-md-3">
+                    <h6>Destination</h6>
+                  </div>
+                  <div className="col-md-4">
+                    <h6>Arrival Time</h6>
+                  </div>
+                </div>
+                {middleArray}
+              </td>
             </tr>
           )
         }
@@ -485,21 +495,31 @@ class StatusDashboard extends Component {
 
   render() {
     return (
-      <div className="col-md-12 table-div">
-        <table id="state-table" className="table table-bordered" data-sort-name="station" data-toggle="table" data-sort-order="desc">
-          <thead>
-            <tr>
-              <th style={{ width: '25%' }} data-field="station" data-sortable="true">Station</th>
-              {/* <th>Line</th> */}
-              {/* <th>Current Wait</th> */}
-              <th>Current Crowding</th>
-              <th>Elevator & Escalator Health</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderRows()}
-          </tbody>
-        </table>
+      <div>
+        <div className="row" style={{ marginBottom: 15 }}>
+          <div className="col-md-12">
+            <img style={{marginRight: 8}} width="40" src='http://metamediausa.com/website/wp-content/uploads/2009/09/logo_WMATA.png' />
+            <h2 style={{ marginBottom: 20, display: 'inline', lineHeight: '50px', marginTop: 10 }}>Metro Stations Overview</h2>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12 table-div">
+            <table id="state-table" className="table table-bordered" data-sort-name="station" data-toggle="table" data-sort-order="desc">
+              <thead>
+                <tr>
+                  <th style={{ width: '25%' }} data-field="station" data-sortable="true">Station</th>
+                  {/* <th>Line</th> */}
+                  {/* <th>Current Wait</th> */}
+                  <th>Current Crowding</th>
+                  <th>Elevator & Escalator Health</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderRows()}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     )
   }

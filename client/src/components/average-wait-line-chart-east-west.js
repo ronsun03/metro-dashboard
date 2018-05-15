@@ -152,10 +152,11 @@ class AverageWaitLineChartEastWest extends Component {
             "adjustBorderColor": false,
             "color":"#ffffff"
           },
-          "bullet": "round",
+          "bullet": "none",
           "bulletBorderAlpha": 1,
           "bulletColor": "#FFFFFF",
           "bulletSize": 5,
+          "lineColor": "#258EBB",
           "hideBulletsCount": 50,
           "lineThickness": 2,
           "title": "Eastbound",
@@ -166,14 +167,16 @@ class AverageWaitLineChartEastWest extends Component {
         {
           "id": "g2",
           "balloon":{
-            "drop": true,
+            "drop": false,
             "adjustBorderColor": false,
             "color":"#ffffff"
           },
-          "bullet": "round",
+          "bullet": "none",
           "bulletBorderAlpha": 1,
           "bulletColor": "#FFFFFF",
           "bulletSize": 5,
+          "lineColor": "#FF5229",
+          "dashLength": 4,
           "hideBulletsCount": 50,
           "lineThickness": 2,
           "title": "Westbound",
