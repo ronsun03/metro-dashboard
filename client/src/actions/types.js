@@ -11,3 +11,4 @@ export const FETCH_STATION_DETAIL_AVERAGES = 'fetch_station_detail_averages';
 export const FETCH_STATION_DETAIL_PREDICTIONS_ALL_DAY = 'fetch_station_detail_predictions_all_day';
 export const FETCH_ALL_CROWD_DATA = 'fetch_all_crowd_data';
 export const FETCH_STATION_DETAIL_CROWD_DATA = 'fetch_station_detail_crowd_data';
+export const FETCH_STATION_DETAIL_PREDICTED_CROWD_DATA = 'fecth_station_detail_predicted_crowd_data'

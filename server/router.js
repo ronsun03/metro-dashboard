@@ -19,6 +19,7 @@ module.exports = function(app) {
   app.get('/fetch-operational-health', Fetch.fetchOperationalHealth),
   app.post('/fetch-station-detail-averages', Fetch.fetchStationDetailAverages)
   app.get('/fetch-all-crowd-data', Fetch.fetchAllCrowdData)
+  app.get('/fetch-predicted-crowd-data', Fetch.fetchPredictedCrowdData)
   app.get('/test', function(req, res) {
     console.log('testing works');
     res.json({test: true})

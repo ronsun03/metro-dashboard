@@ -31,6 +31,7 @@ class StationDetail extends Component {
     // this.props.fetchStationDetailLongTermData(this.props.params.stationName.split('_').join(' '));
     this.props.fetchStationDetailAverages(this.props.params.stationName.split('_').join(' '));
     this.props.fetchStationDetailCrowdData(this.props.params.stationName.split('_').join(' '));
+    this.props.fetchStationDetailPredictedCrowdData(this.props.params.stationName.split('_').join(' '));
 
     _.forEach(config.stationInformation, (data) => {
       if(this.props.params.stationName.split('_').join(' ') == data.Name) {
@@ -575,6 +576,7 @@ class StationDetail extends Component {
 
   renderCrowdGraph() {
     const data = this.props.stationDetailCrowdData;
+    const predictedData = this.props.stationDetailPredictedCrowdData;
     const numOfLines = _.size(data);
     const stationKeyArray = [];
     _.forEach(data, (point, key) => {
@@ -583,7 +585,7 @@ class StationDetail extends Component {
 
     if (numOfLines == 1) {
       return (
-        <CrowdingDataChart predictedData={data} stationKeyArray={stationKeyArray}/>
+        <CrowdingDataChart predictedDataSet={predictedData} stationKeyArray={stationKeyArray}/>
       )
     }
 
@@ -650,7 +652,8 @@ function mapStateToProps(state) {
     stationDetailHealth: state.fetch.stationDetailHealth,
     stationDetailAverages: state.fetch.stationDetailAverages,
     // stationDetailPredictionsAllDay: state.fetch.stationDetailPredictionsAllDay,
-    stationDetailCrowdData: state.fetch.stationDetailCrowdData
+    stationDetailCrowdData: state.fetch.stationDetailCrowdData,
+    stationDetailPredictedCrowdData: state.fetch.stationDetailPredictedCrowdData
   }
 }
 

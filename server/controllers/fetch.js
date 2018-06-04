@@ -172,3 +172,25 @@ exports.fetchAllCrowdData = function(req, res, next) {
 
   connection.end();
 }
+
+exports.fetchPredictedCrowdData = function(req, res, next) {
+  var connection = mysql.createConnection({
+    host     : 'metrod3.cfbbqu7kclkl.us-east-2.rds.amazonaws.com',
+    user     : 'ignytegroup',
+    password : 'Ignyterox!',
+    database : 'metrodb'
+  });
+
+  connection.connect();
+
+  connection.query('SELECT * FROM PopularTimes', function(err, rows, fields) {
+    if (!err) {
+      // console.log('StationHealth: ', rows);
+      res.json(rows);
+    } else {
+      console.log('Error while performing Query.');
+    }
+  });
+
+  connection.end();
+}

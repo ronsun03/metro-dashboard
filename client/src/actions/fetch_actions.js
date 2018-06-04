@@ -15,7 +15,8 @@ import {
   FETCH_STATION_DETAIL_AVERAGES,
   FETCH_STATION_DETAIL_PREDICTIONS_ALL_DAY,
   FETCH_ALL_CROWD_DATA,
-  FETCH_STATION_DETAIL_CROWD_DATA
+  FETCH_STATION_DETAIL_CROWD_DATA,
+  FETCH_STATION_DETAIL_PREDICTED_CROWD_DATA
 } from './types';
 
 const ROOT_URL = config.serverURL;
@@ -293,6 +294,40 @@ export const fetchStationDetailCrowdData = stationName => {
     dispatch({
       type: FETCH_STATION_DETAIL_CROWD_DATA,
       payload: stationCodeObject
+    })
+  }
+}
+
+export const fetchStationDetailPredictedCrowdData = stationName => {
+  return dispatch => {
+    axios.get(`${ROOT_URL}/fetch-predicted-crowd-data`).then(response => {
+      const { stationInformation } = config;
+      const stationCodeArray = [];
+      const stationCodeObject = {};
+      _.forEach(stationInformation, station => {
+        if (station.Name == stationName) {
+          stationCodeArray.push(station.Code)
+          stationCodeObject[station.Code] = [];
+        };
+      });
+      console.log('stationCodeArray: ', stationCodeArray);
+      console.log('stationCodeObject: ', stationCodeObject);
+      console.log('response.data: ', response.data);
+
+      _.forEach(stationCodeObject, (blank, stationKey) => {
+        _.forEach(response.data, data => {
+          if (data.stationkey == stationKey) {
+            stationCodeObject[stationKey] = JSON.parse(data.poptime)
+          }
+        })
+      })
+
+      console.log('stationCodeObject2: ', stationCodeObject);
+
+      dispatch({
+        type: FETCH_STATION_DETAIL_PREDICTED_CROWD_DATA,
+        payload: stationCodeObject
+      })
     })
   }
 }

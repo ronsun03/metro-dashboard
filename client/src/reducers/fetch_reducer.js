@@ -7,7 +7,8 @@ import {
   FETCH_STATION_DETAIL_AVERAGES,
   FETCH_STATION_DETAIL_PREDICTIONS_ALL_DAY,
   FETCH_ALL_CROWD_DATA,
-  FETCH_STATION_DETAIL_CROWD_DATA
+  FETCH_STATION_DETAIL_CROWD_DATA,
+  FETCH_STATION_DETAIL_PREDICTED_CROWD_DATA
 } from '../actions/types';
 
 const initialState = {
@@ -42,6 +43,8 @@ export default function(state = initialState, action) {
       return { ...state, allCrowdData: action.payload }
     case FETCH_STATION_DETAIL_CROWD_DATA:
       return { ...state, stationDetailCrowdData: action.payload }
+    case FETCH_STATION_DETAIL_PREDICTED_CROWD_DATA:
+      return { ...state, stationDetailPredictedCrowdData: action.payload}
     default:
       return state;
   }
